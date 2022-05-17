@@ -35,12 +35,12 @@ export async function readSwatchesFile(data, space = 'hsv') {
 			name,
 			colors: swatches.map((swatch) => {
         if (swatch === null) return null;
-				const { hue, saturation, brightness } = swatch;
+				const { hue, saturation, brightness, name } = swatch;
 				let color = [hue * 360, saturation * 100, brightness * 100];
 				if (space !== 'hsv') {
 					color = colorConverters.hsv.to[space](...color);
 				}
-				return [color, space];
+				return [color, space, name.trim()];
 			}),
 		};
 	} catch (error) {
